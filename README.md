@@ -15,7 +15,7 @@ They can also delete their account from this page if desired.
 
 ***
 ### How to Use
-List Card is hosted at http://ahunter319.pythonanywhere.com/. You can register with a dummy email to try it out if you'd like. Though the site is built to require a user be logged in to use, it was built for practice, and the security of your projects and/or login information cannot be guarunteed. If you'd like to build the site on your own machine and host it locally, follow the standard practices for Flask applications. 
+List Card is hosted at http://ahunter319.pythonanywhere.com. You can register with a dummy email to try it out if you'd like. Though the site is built to require a user be logged in to use, it was built for practice, and the security of your projects and/or login information cannot be guarunteed. If you'd like to build the site on your own machine and host it locally, follow the standard practices for Flask applications. 
 
 ***
 ### Technologies
