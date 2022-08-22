@@ -1,5 +1,4 @@
 # List-Card
-***
 List Card is an online project tracking resource designed to help users stay organized and get more done. It's easy to
 get started and simple to use, while providing basic progress tracking.
 
