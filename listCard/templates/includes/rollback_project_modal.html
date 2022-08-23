@@ -1,0 +1,32 @@
+<style>
+  .modal-content {
+  background-color: #212121;
+  }
+</style>
+
+<div class="modal fade" id="Modal-Rollback-{{ current_project.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-block text-center">
+        <button type="button" class="btn-close btn-close-white" style="float:right;" data-dismiss="modal" aria-label="Close">
+        </button>
+        <h5 class="modal-title" id="exampleModalLabel">
+          Rollback {{ current_project.name }}?
+        </h5>
+
+      </div>
+
+      <div class="modal-body text-center">
+        <p> This action will return {{ current_project.name }} back to your dashboard.</p>
+        <br>
+
+        <a href="{{ url_for('update_archived_status', proj_id=current_project.id, status=0) }}"
+           class="btn btn-outline-success">Rollback</a>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

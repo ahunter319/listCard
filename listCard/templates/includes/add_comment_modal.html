@@ -1,0 +1,36 @@
+<style>
+  .modal-content {
+  background-color: #212121;
+  }
+</style>
+
+<div class="modal fade" id="Modal-Comment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Add comment for: {{ current_project.name }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form method="POST">
+          {{ add_comment_form.hidden_tag() }}
+
+          {{ add_comment_form.comment(class="form-control", autofocus=true) }}
+
+          <br>
+
+            {{ add_comment_form.submit(class="btn btn-outline-success btn-block") }}
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

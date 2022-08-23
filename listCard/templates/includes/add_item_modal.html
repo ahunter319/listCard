@@ -1,0 +1,35 @@
+<style>
+  .modal-content {
+  background-color: #212121;
+  }
+</style>
+
+<div class="modal fade" id="Modal-Add-Item" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Add item to {{ current_project.name }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form method="POST">
+          {{ add_item_form.hidden_tag() }}
+
+          {{ add_item_form.item_name(class="form-control", placeholder="Item name", autofocus=true, required=true) }}
+
+          <br>
+
+          {{ add_item_form.submit(class="btn btn-outline-success btn-block") }}
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
