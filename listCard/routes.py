@@ -11,7 +11,7 @@ from io import BytesIO
 
 
 # Configure PDFkit
-path_wkhtmltopdf = "C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe"
+path_wkhtmltopdf = "YOUR_path_to_binary"
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 
@@ -275,9 +275,8 @@ def report_page(proj_id):
         page = render_template("report.html", project=project, items=items, dates=dates)
 
         # Convert html to pdf
-        # css = url_for('static', filename='report.css')
-        css = "C:/Users/ahunt/PycharmProjects/ListCard/listCard/static/report.css"
-
+        css = url_for('static', filename='report.css')
+        
         options = {
             'page-size': 'A4',
             'margin-top': '0.75in',
