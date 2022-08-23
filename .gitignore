@@ -1,2 +1,5 @@
 # Ignore API keys
 .env
+
+# Ignore database
+.db
