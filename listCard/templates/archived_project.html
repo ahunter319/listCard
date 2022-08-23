@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Archive: {{ current_project.name }}
+{% endblock %}
+
+<!-- Gets css file based on user Theme-->
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href='{{ theme }}'>
+{% endblock %}
+
+{% block content %}
+
+    {% include 'includes/rollback_project_modal.html' %}
+
+<!--    Displaying Project Details-->
+    <div class="container text-center bg-dark rounded">
+        <h1 style="margin-top: 10px">{{ current_project.name }}: {{ current_project.get_completion() }}% Complete </h1>
+        <br>
+        <h4>{{ current_project.description }}</h4>
+        <br>
+        <ul> <h3>Completed Tasks</h3></ul>
+            {% for item in items %}
+                {% if item.status == "DONE" %}
+                    <li> {{ item.name }} </li>
+                {% endif %}
+            {% endfor %}
+        <br>
+        <ul> <h3>Incomplete Tasks</h3></ul>
+        {% for item in items %}
+            {% if item.status != "DONE" %}
+                <li> {{ item.name }} </li>
+            {% endif %}
+        {% endfor %}
+
+        <br>
+        <br>
+
+<!--        Actions/Options-->
+        <div class="container" style="padding:10px">
+            <a href="{{ url_for('report_page', proj_id=current_project.id) }}" class="btn btn-outline-primary">
+            Generate Report</a>
+
+            <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                    data-target="#Modal-Rollback-{{ current_project.id }}">Rollback</button>
+
+            <a href="{{ url_for('archive_page') }}" class="btn btn-outline-primary">Return to Archive</a>
+        </div>
+    </div>
+
+{% endblock %}

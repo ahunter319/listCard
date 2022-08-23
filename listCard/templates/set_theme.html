@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Set Theme
+{% endblock %}
+
+<!-- Gets css file based on user Theme-->
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href='{{ theme }}'>
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container text-center bg-dark rounded" style="margin-top:10px; padding:10px;">
+        <h1 class="heading">Pick a theme</h1>
+        <br>
+        <form method="POST" class="form-signin">
+            {{ theme_form.hidden_tag() }}
+            {{ theme_form.theme(class="form-control", placeholder="Theme") }}
+            <br>
+            {{ theme_form.submit(class="btn btn-lg btn-block btn-outline-success") }}
+            <br>
+            <br>
+        </form>
+    </div>
+</body>
+{% endblock %}

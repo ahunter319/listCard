@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    {{ current_project.name }}
+{% endblock %}
+
+<!-- Gets css file based on user Theme-->
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href='{{ theme }}'>
+{% endblock %}
+
+{% block content %}
+<!--    Project Banner/Jumbotron-->
+    <div class="jumbotron jumbotron-fluid text-center"   style="margin-bottom: 20px">
+            <br>
+            <h1 class="display-4">{{ current_project.name }}</h1>
+            <br>
+            <h4 class="text-muted">{{ current_project.description }}</h4>
+            <br>
+
+    </div>
+
+<!--        Progress Bar-->
+    <div class="container text-center" style="padding:0;">
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ current_project.get_completion() }}%"
+                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <br>
+
+        {% include 'includes/add_item_modal.html' %}
+        {% include 'includes/add_comment_modal.html' %}
+
+<!--        Chose button outline/fill for user-theme-->
+        {% if current_user.theme == 'dark' %}
+            <button type="button" class="btn btn-outline-success" style="margin-bottom: 20px"
+                    data-toggle="modal" data-target="#Modal-Add-Item">Add New Item</button>
+        {% else %}
+            <button type="button" class="btn btn-success" style="margin-bottom: 20px"
+                data-toggle="modal" data-target="#Modal-Add-Item">Add New Item</button>
+        {% endif %}
+    </div>
+
+
+    <!--Status Cards-->
+    <div class="container" style="padding:0;">
+        <div class="row">
+
+<!--            theTODO Card-->
+            <div class="col-md-4">
+                <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                    <div class="card-body">
+                      <h5 class="card-title"> TODO</h5>
+                          <ul class="list-group list-group-flush">
+<!--                              List items-->
+                              {% for item in items %}
+                                  {% if item.status == "TODO" %}
+                                      <li class="list-group-item">
+                                          <div class="row">
+                                              <div class="col-md-10">
+                                                {{ item.name }}
+                                              </div>
+                                              <div class="col-md-2">
+<!--                                                  Delete/Move Buttons-->
+                                                  <a style="text-decoration:none;" href="{{ url_for('update_status',
+                                                  proj_id=current_project.id, item_id=item.id, status='DOING') }}">➡</a>
+                                                  <a style="text-decoration:none;" href="{{ url_for('remove_item',
+                                                  proj_id=current_project.id, item_id=item.id) }}">&#10062;</a>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                    </div>
+                </div>
+            </div>
+
+<!--            DOING Card-->
+            <div class="col-md-4">
+                <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                    <div class="card-body">
+                      <h5 class="card-title"> DOING</h5>
+                          <ul class="list-group list-group-flush">
+<!--                              List Items-->
+                              {% for item in items %}
+                                  {% if item.status == "DOING" %}
+                                      <li class="list-group-item">
+                                          <div class="row">
+<!--                                              Rollback status button-->
+                                              <div class="col-md-2">
+                                                  <a style="text-decoration:none;" href="{{ url_for('update_status',
+                                                  proj_id=current_project.id, item_id=item.id, status='TODO') }}">⬅</a>
+                                              </div>
+<!--                                              Item name-->
+                                              <div class="col-md-8">
+                                                {{ item.name }}
+                                              </div>
+<!--                                              Delete/update status buttons-->
+                                              <div class="col-md-2">
+                                                  <a style="text-decoration:none;" href="{{ url_for('update_status',
+                                                  proj_id=current_project.id, item_id=item.id, status='DONE') }}">&#10145;</a>
+                                                  <a style="text-decoration:none;" href="{{ url_for('remove_item',
+                                                  proj_id=current_project.id, item_id=item.id) }}">&#10062;</a>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                    </div>
+                </div>
+            </div>
+
+<!--            DONE Card-->
+            <div class="col-md-4">
+                <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                    <div class="card-body">
+                      <h5 class="card-title"> DONE</h5>
+                          <ul class="list-group list-group-flush">
+<!--                              List Items-->
+                              {% for item in items %}
+                                  {% if item.status == "DONE" %}
+                                      <li class="list-group-item">
+                                          <div class="row">
+<!--                                              Rollback status button-->
+                                              <div class="col-md-2">
+                                                  <a style="text-decoration:none;" href="{{ url_for('update_status',
+                                                  proj_id=current_project.id, item_id=item.id, status='DOING') }}">⬅</a>
+                                              </div>
+<!--                                              Item name-->
+                                              <div class="col-md-10">
+                                                  {{ item.name }}
+                                              </div>
+                                          </div>
+                                      </li>
+                                  {% endif %}
+                              {% endfor %}
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Comment Section -->
+    <br>
+    <div class="container text-center bg-dark rounded" style="padding-top:10px">
+        <h4>Comments</h4>
+        {% if current_project.comments%}
+            <p class="text-muted">
+                {{ current_project.comments }}
+            </p>
+        {% endif %}
+        <br>
+        <button type="button" class="btn btn-outline-success" style="margin-bottom: 20px"
+            data-toggle="modal" data-target="#Modal-Comment">Add Comment</button>
+    </div>
+
+    <br>
+
+    <!--Bottom options-->
+    <div class="container text-center">
+<!--        Choosing button-outline/fill from user-theme-->
+        {% if current_user.theme == 'dark' %}
+            <a href="{{ url_for('report_page', proj_id=current_project.id)}}" class="btn btn-outline-primary">Generate Report</a>
+            <a href="{{ url_for('dashboard_page') }}" class="btn btn-outline-primary">Back to Dashboard</a>
+        {% else %}
+            <a href="{{ url_for('report_page', proj_id=current_project.id)}}" class="btn btn-primary">Generate Report</a>
+            <a href="{{ url_for('dashboard_page') }}" class="btn btn-primary">Back to Dashboard</a>
+        {% endif %}
+    </div>
+    <br>
+    <br>
+
+{% endblock %}

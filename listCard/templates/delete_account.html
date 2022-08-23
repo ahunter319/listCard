@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    Delete Account
+{% endblock %}
+
+<!-- Gets css file based on user Theme-->
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href='{{ theme }}'>
+{% endblock %}
+
+{% block content %}
+    <body class="text-center">
+        <div class="container bg-dark rounded" style="margin-top:10px; padding:10px;">
+            <h1 class="heading">Are you sure you want to delete your account?</h1>
+            <h4 class="text-muted">This action cannot be undone.</h4>
+            <br>
+<!--            Delete Account Form-->
+            <form method="POST" class="form-signin">
+                {{ delete_form.hidden_tag() }}
+                {{ delete_form.password(class="form-control", placeholder="Password") }}
+                <br>
+                {{ delete_form.submit(class="btn btn-lg btn-block btn-outline-danger") }}
+                <br>
+                <br>
+            </form>
+        </div>
+    </body>
+{% endblock %}

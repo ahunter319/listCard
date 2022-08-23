@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title%}
+    {{ current_user.username}}'s Archive
+{% endblock %}
+
+<!-- Gets css file based on user Theme-->
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href='{{ theme }}'>
+{% endblock %}
+
+{% block content %}
+
+<!--    Banner-->
+    <div class="jumbotron jumbotron-fluid text-center">
+            <h1 class="display-4"  style="margin-left: 20px">{{ current_user.username}}'s Archive</h1>
+            <br>
+    </div>
+
+<!--Displaying Archived Projects-->
+    <div class="row" >
+        {% if not archived_projects %}
+            <h5 style="margin: 20px;">Nothing to see here...</h5>
+        {% endif %}
+
+        {% for current_project in archived_projects %}
+
+            {% include 'includes/rollback_project_modal.html' %}
+
+            <div class="col-md-4">
+                <div style="margin: 10px" class="card text-center bg-dark">
+                    <div class="card-body">
+
+                      <h5 class="card-title">{{ current_project.name }}</h5>
+
+                      <p class="card-text">{{ current_project.description }}</p>
+
+                      <a href="{{ url_for('archived_project_page', proj_id=current_project.id) }}"
+                         class="btn btn-outline-primary">View Project</a>
+
+                      <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                        data-target="#Modal-Rollback-{{ current_project.id }}">Rollback</button>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}
+

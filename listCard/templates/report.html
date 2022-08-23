@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <!-- Styles -->
+<!--        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='report.css') }}">-->
+        <link rel="stylesheet" type="text/css" href="../static/report.css">
+
+        <title>
+            Project Status Report
+        </title>
+    </head>
+
+    <body>
+        <div class="banner">
+<!--            Banner-->
+                <h2>Status Report: {{ project.name }}</h2>
+                <h5>--- {{ project.description }}</h5>
+                <h4>{{ project.get_completion() }}% Complete</h4>
+
+        </div>
+<!--Date/Times-->
+            <div class="info1">
+                <h4>Created: {{ dates["created"] }}</h4>
+                <h4>Last updated: {{ dates["updated"] }}</h4>
+                <h4>Reporting on: {{ dates["reported"] }}</h4>
+            </div>
+<!--Completed-->
+            <div class="info2">
+                <h3>Finished Work</h3>
+                <ol>
+                    {% for item in items %}
+                        {% if item.status == "DONE" %}
+                            <li>{{ item.name }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+<!--Action-->
+            <div class="info1">
+                <h3>Planned Work</h3>
+                <table style="min-width:20%;width:auto;">
+                    <thead>
+                        <tr>
+                            <th>Action Items</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            {% if item.status != "DONE" %}
+                                <tr>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.status }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+<!--Comments-->
+            <div class="info2">
+                <h3>Comments</h3>
+                <p>
+                    {{ project.comments }}
+                </p>
+            </div>
+        </div>
+        <br>
+        <br>
+    </body>
+</html>
