@@ -16,7 +16,3 @@ login_manager.login_view = "login_page"
 login_manager.login_message_category = "info"
 
 from listCard import routes
-
-# first time running, to set up database. Run __init__.py directly
-# db.create_all()
-# db.session.commit()
