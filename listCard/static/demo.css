@@ -1,0 +1,43 @@
+body {
+    background-color: #000814;
+    color: white;
+}
+
+p {
+    padding-top:5px;
+    color:#b8bfc6;
+}
+
+.move {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px;
+}
+
+.col {
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #001d3d;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (min-width: 800px) {
+    .fixit {
+    padding: 10px;
+    margin: 10px;
+    max-width: 30%;
+    }
+}
+
+@media (max-width: 800px) {
+    .fixit {
+    padding: 10px;
+    margin: 10px;
+    }
+}

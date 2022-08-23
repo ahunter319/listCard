@@ -1,0 +1,15 @@
+body {
+    background-color: #5192ba;
+    color: white;
+}
+
+.jumbotron {
+    background-color: #29374d;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+

@@ -1,0 +1,37 @@
+body {
+  padding: 10px;
+  font-family: monospace;
+  font: #000814;
+}
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+ tr:nth-child(even) {
+        background-color: #e6f4fc;
+      }
+      tr:nth-child(odd) {
+        background-color: #c7e0ef;
+      }
+
+td {
+  text-align: center;
+}
+
+.banner {
+  background-color: #5192ba;
+  padding: 1em;
+}
+
+.info1 {
+  background-color: #f6f6f6;
+  padding: 1em;
+}
+
+.info2 {
+  background-color: #ececec;
+  padding: 1em;
+}
