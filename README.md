@@ -3,7 +3,7 @@ List Card is an online project tracking resource designed to help users stay org
 get started and simple to use, while providing basic progress tracking.
 
 ***
-### General Info
+### Features
 This is a website where a user can register and login to a private account and create and manage todo-list projects. 
 Each project can be opened in order to see the task-cards with their listed items. There is a card for each status and 
 each item can be moved back or forth along the cards. There's also a progress bar that automatically updates whenever an 
